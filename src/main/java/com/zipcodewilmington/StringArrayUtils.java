@@ -1,5 +1,7 @@
 package com.zipcodewilmington;
 
+import java.util.Objects;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -25,7 +27,7 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+        return array[array.length -1];
     }
 
     /**
@@ -33,7 +35,7 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+        return array[array.length -2];
     }
 
     /**
@@ -42,6 +44,11 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
+        for (int i=1; i < array.length; i++) {
+            if (Objects.equals(array[i], value)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -50,7 +57,12 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        for (int i = 0; i < array.length/2; i++) {
+            String temp = array[i];
+            array[i] = array[array.length -1 - i];
+            array[array.length -1 -i] = temp;
+        }
+        return array;
     }
 
     /**
@@ -58,7 +70,16 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+        int counter = 0;
+        int idx = array.length;
+                for (int i=0; i <= idx/2 && idx !=0; i++) {
+                    if (array[i] != array[idx -i -1]) {
+                        counter = 1;
+                        break;
+                    }
+                }
+
+        return counter==0;
     }
 
     /**
